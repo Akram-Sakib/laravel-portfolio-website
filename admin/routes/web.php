@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\VisitorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, "homeIndex"]);
+
+Route::get('/visitor', [VisitorController::class, "visitorIndex"]);
+
+Route::get('/services', [ServicesController::class, "serviceIndex"]);
+
+Route::get('/getservicedata', [ServicesController::class, "getServiceData"]);
+
+Route::get('/servicedelete', [ServicesController::class, "serviceDelete"]);
