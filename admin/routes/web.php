@@ -20,8 +20,9 @@ Route::get('/', [HomeController::class, "homeIndex"]);
 
 Route::get('/visitor', [VisitorController::class, "visitorIndex"]);
 
+/* Service Management */
 Route::get('/services', [ServicesController::class, "serviceIndex"]);
-
 Route::get('/getservicedata', [ServicesController::class, "getServiceData"]);
-
-Route::get('/servicedelete', [ServicesController::class, "serviceDelete"]);
+Route::post('/servicedelete', [ServicesController::class, "serviceDelete"]);
+Route::post('/serviceDetails', [ServicesController::class, "getServiceDetails"]);
+Route::post('/serviceUpdate', [ServicesController::class, "serviceUpdate"]);
