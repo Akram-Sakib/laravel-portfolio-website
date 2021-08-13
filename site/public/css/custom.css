@@ -1,3 +1,6 @@
+html,body{
+    scroll-behavior: smooth;
+}
 .section-marginTop{
     margin-top: 80px;
 }

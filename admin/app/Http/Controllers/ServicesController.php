@@ -14,7 +14,7 @@ class ServicesController extends Controller
 
     public function getServiceData()
     {
-        $result = json_encode(ServicesModel::all());
+        $result = json_encode(ServicesModel::orderBy("id", "desc")->get());
         return $result;
     }
 
@@ -45,6 +45,22 @@ class ServicesController extends Controller
         $img = $request->input("img");
 
         $result = ServicesModel::where("id","=",$id)->update(["service_name"=>$name, "service_des"=>$desc, "service_img"=>$img]);
+
+        if ($result) {
+            return 1;
+        }else {
+            return 0;
+        }
+    }
+
+    public function serviceAdd(Request $request)
+    {
+
+        $name = $request->input("name");
+        $desc = $request->input("des");
+        $img = $request->input("img");
+
+        $result = ServicesModel::insert(["service_name"=>$name, "service_des"=>$desc, "service_img"=>$img]);
 
         if ($result) {
             return 1;
