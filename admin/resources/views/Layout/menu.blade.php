@@ -8,7 +8,7 @@
                      <li class="nav-item mt-3">ADMIN</li>
 					</ul>
                     <ul class="navbar-nav my-lg-0">
-                        <li class="nav-item"><a href="" class="btn btn-sm btn-danger">Logout</a></li>
+                        <li class="nav-item"><a href="{{url('/logout')}}" class="btn btn-sm btn-danger">Logout</a></li>
                     </ul>
                 </div>
             </nav>
@@ -22,6 +22,7 @@
                         <li> <a href="{{url('/visitor')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Visitor</span></a></li>
                     	<li> <a href="{{url('/services')}}" ><span> <i class="fas fa-globe"></i> </span><span class="hide-menu">Services</span></a></li>
                         <li> <a href="{{url('/courses')}}" ><span> <i class="fas fa-book-open"></i> </span><span class="hide-menu">Courses</span></a></li>
+                        <li> <a href="{{url('/photo')}}" ><span> <i class="far fa-images"></i></i> </span><span class="hide-menu">Gallery</span></a></li>
 					</ul>
                 </nav>
             </div>

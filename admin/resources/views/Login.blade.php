@@ -46,18 +46,26 @@
     $('.loginForm').on('submit',function(event){
         event.preventDefault();
         let formData = $(this).serializeArray();
-        let username = formData[0]['value']
-        let password = formData[1]['value']
-        alert(username+password);
+        let userName = formData[0]['value'];
+        let userPassword = formData[1]['value'];
+
+        let url = "/onLogin";
 
         axios.post(url, {
-            user:
+          user:userName,
+          pass:userPassword
         }).then(function(response){
-            
+
+          if (response.status == 200 && response.data == 1) {
+            window.location.href = "/";
+          }else{
+            alert("Login Fail! Try Again");
+          }
+
         }).catch(function(error){
-
-        });
-
+          alert("Login Fail! Try Again");
+        })
+            
     });
 </script>
 @endsection
