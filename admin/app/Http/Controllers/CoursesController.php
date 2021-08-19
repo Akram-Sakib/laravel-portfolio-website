@@ -10,9 +10,7 @@ class CoursesController extends Controller
     
     public function courseIndex()
     {
-
         return view("Course");
-
     }
 
     public function getCourseData()

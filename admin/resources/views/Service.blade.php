@@ -148,7 +148,7 @@
 
 
 @section("script")
-	<script type="text/javascript">
+<script type="text/javascript">
 		getServiceData()
 
     
@@ -225,12 +225,12 @@ function getServiceData() {
     //Service Delete Modal Yes button
     $("#serviceDeleteConfirmBTN").click(function () {
         var id = $("#serviceDeleteId").html();
-        getServiceDelete(id);
+        ServiceDelete(id);
     });
 
     
 //Service Delete
-function getServiceDelete(deleteId) {
+function ServiceDelete(deleteId) {
 
     $("#serviceDeleteConfirmBTN").html(
         "<div class='spinner-border spinner-border-sm' role='status'></div>"
@@ -243,7 +243,7 @@ function getServiceDelete(deleteId) {
         if (response.status == 200) {
 
             if (response.data == 1) {
-                $("#deleteModal").modal("hide");
+                    $("#deleteModal").modal("hide");
                 //Toaster Msg
                 getServiceData();
             } else {

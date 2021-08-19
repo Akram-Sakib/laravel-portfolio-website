@@ -48,7 +48,6 @@
         let formData = $(this).serializeArray();
         let userName = formData[0]['value'];
         let userPassword = formData[1]['value'];
-
         let url = "/onLogin";
 
         axios.post(url, {

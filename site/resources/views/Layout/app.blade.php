@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield("title")</title>
-    <meta name="author" content="Akram Hossain">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+    {!! JsonLd::generate() !!}
+
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" >
     <link href="{{asset('css/custom.css')}}" rel="stylesheet" >

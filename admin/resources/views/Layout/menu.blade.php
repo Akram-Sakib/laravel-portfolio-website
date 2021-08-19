@@ -20,8 +20,9 @@
                         <li class="nav-devider mt-0" style="margin-bottom: 5px"></li>
                         <li> <a href="{{url('/')}}" ><span> <i class="fas fa-home"></i> </span><span class="hide-menu">Home</span></a></li>
                         <li> <a href="{{url('/visitor')}}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Visitor</span></a></li>
-                    	<li> <a href="{{url('/services')}}" ><span> <i class="fas fa-globe"></i> </span><span class="hide-menu">Services</span></a></li>
+                    	<li> <a href="{{url('/service')}}" ><span> <i class="fas fa-globe"></i> </span><span class="hide-menu">Services</span></a></li>
                         <li> <a href="{{url('/courses')}}" ><span> <i class="fas fa-book-open"></i> </span><span class="hide-menu">Courses</span></a></li>
+                        <li> <a href="{{url('/projects')}}" ><span> <i class="fas fa-project-diagram"></i> </span><span class="hide-menu">Projects</span></a></li>
                         <li> <a href="{{url('/photo')}}" ><span> <i class="far fa-images"></i></i> </span><span class="hide-menu">Gallery</span></a></li>
 					</ul>
                 </nav>

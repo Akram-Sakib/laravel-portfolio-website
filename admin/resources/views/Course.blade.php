@@ -68,7 +68,7 @@
       <div class="modal-body mt-3 pt-5 text-center">
 
 <div id="courseAddForm" class="w-100">
-  <h5 class="mb-4">Add New Service</h5>
+  <h5 class="mb-4">Add New Course</h5>
       <div class="row">
           <div class="col-md-6">
               <!-- Course Name -->
