@@ -40,9 +40,9 @@ class ServicesController extends Controller
     public function serviceUpdate(Request $request)
     {
         $id = $request->input("id");
-        $name = $request->input("name");
-        $desc = $request->input("des");
-        $img = $request->input("img");
+        $name = $request->input("service_name");
+        $desc = $request->input("service_des");
+        $img = $request->input("service_img");
 
         $result = ServicesModel::where("id","=",$id)->update(["service_name"=>$name, "service_des"=>$desc, "service_img"=>$img]);
 
@@ -56,9 +56,9 @@ class ServicesController extends Controller
     public function serviceAdd(Request $request)
     {
 
-        $name = $request->input("name");
-        $desc = $request->input("des");
-        $img = $request->input("img");
+        $name = $request->input("service_name");
+        $desc = $request->input("service_des");
+        $img = $request->input("service_img");
 
         $result = ServicesModel::insert(["service_name"=>$name, "service_des"=>$desc, "service_img"=>$img]);
 

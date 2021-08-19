@@ -1,27 +1,28 @@
 @extends("Layout.app")
 
-@section("title","Sevices")
+@section("title", "Services")
 
 @section("content")
-<div id="mainDiv" class="container d-none">
+<div id="mainDivService" class="container d-none">
 <div class="row">
 <div class="col-md-12 p-5">
 
-<button id="addNewBtnId" class="btn btn-sm btn-danger mb-5">Add New</button>
+<button id="addNewServiceBtnId" class="btn btn-sm btn-danger mb-3">Add New</button>
 
-<table id="serviceDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+<table id="ServiceDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
     <tr>
       <th class="th-sm">Image</th>
-      <th class="th-sm">Name</th>
-      <th class="th-sm">Description</th>
-      <th class="th-sm">Edit</th>
-      <th class="th-sm">Delete</th>
+	  <th class="th-sm">Name</th>
+	  <th class="th-sm">Description</th>
+	  <th class="th-sm">Edit</th>
+	  <th class="th-sm">Delete</th>
     </tr>
   </thead>
-  <tbody id="service_table">
+  <tbody id="Service_table">
   
-		
+
+	
   </tbody>
 </table>
 
@@ -31,39 +32,83 @@
 
 
 
+<div id="loadingDivService" class="container mt-5">
+<div class="row">
+<div class="col-md-12 p-5 text-center">
+
+  <img src="{{asset('images/loading.svg')}}" alt="" srcset="">
+
+</div>
+</div>
+</div>
 
 
-<!-- Delete Modal -->
+<div id="errorDivService" class="container d-none mt-5">
+<div class="row">
+<div class="col-md-12 p-5 text-center">
+
+  <h3>Error Something went wrong !</h3>
+
+</div>
+</div>
+</div>
+
+<!-- Add Service Modal -->
 <div
   class="modal fade"
-  id="deleteModal"
+  id="addServiceModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body mt-3">
-        <h5 class="">Do you want to Delete ?</h5>
-        <h5 class="d-none" id='serviceDeleteId'></h5>
+      <div class="modal-body mt-3 pt-5 text-center">
+
+<div id="ServiceAddForm" class="w-100">
+  <h5 class="mb-4">Add New Services</h5>
+      <div class="row">
+          <div class="col-md-12">
+              <!-- Service Name -->
+      <div class="form-outline mb-4">
+        <input id="ServiceNameAddId" type="email" id="form5Example2" class="form-control" />
+        <label class="form-label" for="form5Example2">Service Name</label>
+      </div>
+      <!-- Service Description -->
+      <div class="form-outline mb-4">
+        <input id="ServiceDesAddId" type="email" id="form5Example2" class="form-control" />
+        <label class="form-label" for="form5Example2">Service Description</label>
+      </div>
+      <!-- Service Image Link -->
+      <div class="form-outline mb-4">
+        <input id="ServiceImageAddId" type="email" id="form5Example2" class="form-control" />
+        <label class="form-label" for="form5Example2">Service Image Link</label>
+      </div>
+          </div>
+      </div>
+      
+      
+</div>
+
       </div>
       <div class="modal-footer">
-        <button  class="btn btn-primary" data-mdb-dismiss="modal">No</button>
-        <button  id="serviceDeleteConfirmBTN" type="button" class="btn btn-danger">Yes</button>
+        <button  class="btn btn-primary" data-mdb-dismiss="modal">Cancel</button>
+        <button  id="ServiceAddConfirmBTN" type="button" class="btn btn-danger">Add New</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<!-- Edit Modal -->
+<!-- Service Edit Modal -->
 <div
   class="modal fade"
-  id="editModel"
+  id="editServiceModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
+
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
@@ -74,105 +119,87 @@
         </div>
       <div class="modal-body mt-3 pt-5 text-center">
 
-      <h5 id="serviceEditId" class="d-none mt-4"></h5>
-<div id="serviceEditForm" class="d-none w-100">
-      <!-- Service Name -->
+<div id="ServiceEditForm" class="w-100 d-none">
+    <h6 class="d-none" id="ServiceEditId" ></h6>
+      <div class="row">
+          <div class="col-md-12">
+    <!-- Service Name -->
       <div class="form-outline mb-4">
-        <input id="serviceNameId" type="email" id="form5Example2" class="form-control" />
+        <input id="ServiceNameEditId" type="email" id="form5Example2" class="form-control" />
         <label class="form-label" for="form5Example2">Service Name</label>
       </div>
       <!-- Service Description -->
       <div class="form-outline mb-4">
-        <input id="serviceDesId" type="email" id="form5Example2" class="form-control" />
+        <input id="ServiceDesEditId" type="email" id="form5Example2" class="form-control" />
         <label class="form-label" for="form5Example2">Service Description</label>
       </div>
       <!-- Service Image Link -->
       <div class="form-outline mb-4">
-        <input id="serviceImageId" type="email" id="form5Example2" class="form-control" />
+        <input id="ServiceImageEditId" type="email" id="form5Example2" class="form-control" />
         <label class="form-label" for="form5Example2">Service Image Link</label>
       </div>
+          </div>
+      </div>   
 </div>
-      <img id="serviceEditLoader" src="{{asset('images/loading.svg')}}" alt="" srcset="">
-      <h5 id="serviceEditWrong" class="d-none" >Something went wrong</h5>
+
+<img id="ServiceEditLoader" src="{{asset('images/loading.svg')}}" alt="" srcset="">
+<h5 id="ServiceEditWrong" class="d-none" >Something went wrong</h5>
 
       </div>
       <div class="modal-footer">
         <button  class="btn btn-primary" data-mdb-dismiss="modal">Cancel</button>
-        <button  id="serviceEditConfirmBTN" type="button" class="btn btn-danger">Save</button>
+        <button  id="ServiceEditConfirmBTN" type="button" class="btn btn-danger">Save</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<!-- Add Modal -->
+<!-- Delete Modal -->
 <div
   class="modal fade"
-  id="addModal"
+  id="ServiceDeleteModal"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body mt-3 pt-5 text-center">
-
-<div id="serviceAddForm" class="w-100">
-  <h6>Add New Service</h6>
-      <!-- Service Name -->
-      <div class="form-outline mb-4">
-        <input id="serviceNameAddId" type="email" id="form5Example2" class="form-control" />
-        <label class="form-label" for="form5Example2">Service Name</label>
-      </div>
-      <!-- Service Description -->
-      <div class="form-outline mb-4">
-        <input id="serviceDesAddId" type="email" id="form5Example2" class="form-control" />
-        <label class="form-label" for="form5Example2">Service Description</label>
-      </div>
-      <!-- Service Image Link -->
-      <div class="form-outline mb-4">
-        <input id="serviceImageAddId" type="email" id="form5Example2" class="form-control" />
-        <label class="form-label" for="form5Example2">Service Image Link</label>
-      </div>
-</div>
-
+      <div class="modal-body mt-3">
+        <h5 class="">Do you want to Delete ?</h5>
+        <h5 id='ServiceDeleteId' class="d-none"></h5>
       </div>
       <div class="modal-footer">
-        <button  class="btn btn-primary" data-mdb-dismiss="modal">Cancel</button>
-        <button  id="serviceAddConfirmBTN" type="button" class="btn btn-danger">Add New</button>
+        <button class="btn btn-primary" data-mdb-dismiss="modal">No</button>
+        <button id="ServiceDeleteConfirmBTN" type="button" class="btn btn-danger">Yes</button>
       </div>
     </div>
   </div>
 </div>
 @endsection
 
-
 @section("script")
-<script type="text/javascript">
-		getServiceData()
+<script>
+    getServicesData()
 
-    
-function getServiceData() {
-    
+function getServicesData() {
     axios
-        .get("/getservicedata")
+        .get("/getServicesData")
         .then(function (response) {
             if (response.status == 200) {
-                $("#mainDiv").removeClass("d-none");
-                $("#loadingDiv").addClass("d-none");
-                
-                $("#serviceDataTable").DataTable().destroy();
-                $("#service_table").empty();
-                
+                $("#mainDivService").removeClass("d-none");
+                $("#loadingDivService").addClass("d-none");
+
+                $("#ServiceDataTable").DataTable().destroy();
+                $("#Service_table").empty();
+
                 //Service Data-table
                 var jsonData = response.data;
                 $.each(jsonData, function (i, item) {
                     $("<tr>")
                         .html(
-                            "<td><img class='table-img' src='" +
-                                jsonData[i].service_img +
-                                "'></td>" +
-                                "<td>" +
+                            "<td><img class='table-img' src=" + jsonData[i].service_img + "></td>" +
+                            "<td>" +
                                 jsonData[i].service_name +
                                 "</td>" +
                                 "<td>" +
@@ -180,231 +207,244 @@ function getServiceData() {
                                 "</td>" +
                                 "<td><a data-id='" +
                                 jsonData[i].id +
-                                "' class='serviceEditBtn' ><i class='fas fa-edit'></i></a></td>" +
+                                "' class='ServiceEditBtn' ><i class='fas fa-edit'></i></a></td>" +
                                 "<td><a data-id='" +
                                 jsonData[i].id +
-                                "' class='serviceDeleteBtn' ><i class='fas fa-trash-alt'></i></a></td>"
+                                "' class='ServiceDeleteBtn' ><i class='fas fa-trash-alt'></i></a></td>"
                         )
-                        .appendTo("#service_table");
-
-                    //Service Table Icon Click
-                    $(".serviceDeleteBtn").click(function () {
-                        var id = $(this).data("id");
-                        $("#serviceDeleteId").html(id);
-                        $("#deleteModal").modal("show");
-                    });
-
-                    //Services table edit icon
-                    $(".serviceEditBtn").click(function () {
-                        var id = $(this).data("id");
-
-                        $("#serviceEditId").html(id);
-                        ServiceDetails(id);
-                        $("#editModel").modal("show");
-                    });
-
-                    $("#serviceDataTable").DataTable();
-                    $('.dataTables_length').addClass('bs-select');
-
+                        .appendTo("#Service_table");
                 });
 
-            }else{
-                $("#loadingDiv").addClass("d-none");
-                $("#errorDiv").removeClass("d-none");
-            }
+                $(".ServiceDeleteBtn").click(function () {
+                    var id = $(this).data("id");
+                    $("#ServiceDeleteId").html(id);
+                    $("#ServiceDeleteModal").modal("show");
+                });
 
+                //Services table edit icon
+                $(".ServiceEditBtn").click(function () {
+                    var id = $(this).data("id");
+                    $("#ServiceEditId").html(id);
+                    ServiceDetails(id);
+                    $("#editServiceModal").modal("show");
+                });
+
+                $("#ServiceDataTable").DataTable({ order: false });
+                $(".dataTables_length").addClass("bs-select");
+
+            } else {
+                $("#loadingDivService").addClass("d-none");
+                $("#errorDivService").removeClass("d-none");
+            }
         })
         .catch(function (error) {
-            $("#loadingDiv").addClass("d-none");
-            $("#errorDiv").removeClass("d-none");
+            $("#loadingDivService").addClass("d-none");
+            $("#errorDivService").removeClass("d-none");
         });
-
 }
 
 
-    //Service Delete Modal Yes button
-    $("#serviceDeleteConfirmBTN").click(function () {
-        var id = $("#serviceDeleteId").html();
-        ServiceDelete(id);
+/* Add New Service Click*/
+$("#addNewServiceBtnId").click(function () {
+
+    $("#addServiceModal").modal("show");
+
+});
+
+$("#ServiceAddConfirmBTN").click(function () {
+    var ServiceNameAddId = $("#ServiceNameAddId").val();
+    var ServiceDesAddId = $("#ServiceDesAddId").val();
+    var ServiceImageAddId = $("#ServiceImageAddId").val();
+
+    ServiceAddDetails(
+        ServiceNameAddId,
+        ServiceDesAddId,
+        ServiceImageAddId
+    );
+});
+
+/* Service Add Method */
+function ServiceAddDetails(
+    ServiceName,
+    ServiceDes,
+    ServiceImg
+) {
+    if (ServiceName.length == 0) {
+        //Toaster Msg
+        console.log("Error");
+    } else if (ServiceDes.length == 0) {
+        //Toaster Msg
+        console.log("Error");
+    } else if (ServiceImg.length == 0) {
+        //Toaster Msg
+        console.log("Error");
+    } else {
+        $("#ServiceAddConfirmBTN").html(
+            "<div class='spinner-border spinner-border-sm' role='status'></div>"
+        ); //Loading Animation
+
+        axios
+            .post("/ServiceAdd", {
+                service_name: ServiceName,
+                service_des: ServiceDes,
+                service_img: ServiceImg
+            })
+
+            .then(function (response) {
+                $("#ServiceAddConfirmBTN").html("Add");
+
+                if (response.status == 200) {
+                    if (response.data == 1) {
+                        $("#addServiceModal").modal("hide");
+                        //Toaster Msg
+                        getServicesData();
+                    } else {
+                        $("#addServiceModal").modal("hide");
+                        //Toaster Msg
+                        getServicesData();
+                    }
+                } else {
+                    $("#addServiceModal").modal("hide");
+                    //Toaster Msg
+                }
+            })
+            .catch(function (error) {
+                $("#addServiceModal").modal("hide");
+                //Toaster Msg
+            });
+    }
+}
+
+
+  //Service Delete Modal Yes button
+    $("#ServiceDeleteConfirmBTN").click(function () {
+        var id = $("#ServiceDeleteId").html();
+        getServiceDelete(id);
     });
 
     
 //Service Delete
-function ServiceDelete(deleteId) {
-
-    $("#serviceDeleteConfirmBTN").html(
+function getServiceDelete(deleteId) {
+    $("#ServiceDeleteConfirmBTN").html(
         "<div class='spinner-border spinner-border-sm' role='status'></div>"
     ); //Loading Animation
 
-    axios.post("/servicedelete",{id:deleteId})
-    .then(function(response){
-        
-        $("#serviceDeleteConfirmBTN").html("Yes");
-        if (response.status == 200) {
-
-            if (response.data == 1) {
-                    $("#deleteModal").modal("hide");
-                //Toaster Msg
-                getServiceData();
+    axios
+        .post("/ServiceDelete", { id: deleteId })
+        .then(function (response) {
+            $("#ServiceDeleteConfirmBTN").html("Yes");
+            if (response.status == 200) {
+                if (response.data == 1) {
+                    $("#ServiceDeleteModal").modal("hide");
+                    //Toaster Msg
+                    getServicesData();
+                } else {
+                    $("#ServiceDeleteModal").modal("hide");
+                    //Toaster Msg
+                    getServicesData();
+                }
             } else {
-                $("#deleteModal").modal("hide");
+                $("#ServiceDeleteModal").modal("hide");
                 //Toaster Msg
-                getServiceData();
             }
-
-        }else{
-            $("#deleteModal").modal("hide");
+        })
+        .catch(function (error) {
+            $("#ServiceDeleteModal").modal("hide");
             //Toaster Msg
-        }
-        
-    }).catch(function(error){
-        $("#deleteModal").modal("hide");
-        //Toaster Msg
-    });
+        });
 }
+
 
 //Each Service Update Details
 function ServiceDetails(detailsId) {
     axios
-        .post("/serviceDetails", { id: detailsId })
+        .post("/ServiceDetails", { id: detailsId })
 
         .then(function (response) {
             if (response.status == 200) {
-                $("#serviceEditLoader").addClass("d-none");
-                $("#serviceEditForm").removeClass("d-none");
+                $("#ServiceEditLoader").addClass("d-none");
+                $("#ServiceEditForm").removeClass("d-none");
                 var jsonData = response.data
-                $("#serviceNameId").val(jsonData[0].service_name);
-                $("#serviceDesId").val(jsonData[0].service_des);
-                $("#serviceImageId").val(jsonData[0].service_img);
+                $("#ServiceNameEditId").val(jsonData[0].service_name);
+                $("#ServiceDesEditId").val(jsonData[0].service_des);
+                $("#ServiceImageEditId").val(jsonData[0].service_img);
             }else{
-                $("#serviceEditLoader").addClass("d-none");
-                $("#serviceEditWrong").removeClass("d-none");
+                $("#ServiceEditLoader").addClass("d-none");
+                $("#ServiceEditWrong").removeClass("d-none");
             }
         })
         .catch(function (error) {
-            $("#serviceEditLoader").addClass("d-none");
-            $("#serviceEditWrong").removeClass("d-none");
+            $("#ServiceEditLoader").addClass("d-none");
+            $("#ServiceEditWrong").removeClass("d-none");
         });
 }
 
     //Service Edit Save BTN
-    $("#serviceEditConfirmBTN").click(function () {
-        var id = $("#serviceEditId").html();
-        var name = $("#serviceNameId").val();
-        var des = $("#serviceDesId").val();
-        var img = $("#serviceImageId").val();
-        ServiceUpdateDetails(id, name, des, img);
+    $("#ServiceEditConfirmBTN").click(function () {
+        var id = $("#ServiceEditId").html();
+        var ServiceNameEditId = $("#ServiceNameEditId").val();
+        var ServiceDesEditId = $("#ServiceDesEditId").val();
+        var ServiceImageEditId = $("#ServiceImageEditId").val();
+        ServiceUpdateDetails(
+            id,
+            ServiceNameEditId,
+            ServiceDesEditId,
+            ServiceImageEditId
+        );
     });
 
 //Service Update
-function ServiceUpdateDetails(serviceId,serviceName,serviceDes,serviceImg) {
-    if (serviceName.length == 0) {
+function ServiceUpdateDetails(
+    ServiceId,
+    ServiceName,
+    ServiceDes,
+    ServiceImg
+) {
+    if (ServiceName.length == 0) {
         //Toaster Msg
-    } else if (serviceDes.length == 0) {
+    } else if (ServiceDes.length == 0) {
         //Toaster Msg
-    } else if (serviceImg.length == 0) {
+    } else if (ServiceImg.length == 0) {
         //Toaster Msg
     } else {
-
-        $("#serviceEditConfirmBTN").html(
+        $("#ServiceEditConfirmBTN").html(
             "<div class='spinner-border spinner-border-sm' role='status'></div>"
         ); //Loading Animation
 
         axios
-            .post("/serviceUpdate", {
-                id: serviceId,
-                name: serviceName,
-                des: serviceDes,
-                img: serviceImg,
+            .post("/ServiceUpdate", {
+                id: ServiceId,
+                service_name: ServiceName,
+                service_des: ServiceDes,
+                service_img: ServiceImg
             })
 
             .then(function (response) {
-
-                $("#serviceEditConfirmBTN").html("Save");
+                $("#ServiceEditConfirmBTN").html("Save");
 
                 if (response.status == 200) {
-
                     if (response.data == 1) {
-                        $("#editModel").modal("hide");
+                        $("#editServiceModal").modal("hide");
                         //Toaster Msg
-                        getServiceData();
+                        getServicesData();
                     } else {
-                        $("#editModel").modal("hide");
+                        $("#editServiceModal").modal("hide");
                         //Toaster Msg
-                        getServiceData();
+                        getServicesData();
                     }
                 } else {
-                    $("#editModel").modal("hide");
+                    $("#editServiceModal").modal("hide");
                     //Toaster Msg
                 }
             })
             .catch(function (error) {
-                $("#editModel").modal("hide");
+                $("#editServiceModal").modal("hide");
                 //Toaster Msg
             });
     }
 }
 
 
-//Service Edit Save BTN
-$("#serviceAddConfirmBTN").click(function () {
-    var name = $("#serviceNameAddId").val();
-    var des = $("#serviceDesAddId").val();
-    var img = $("#serviceImageAddId").val();
-    ServiceAddDetails(name, des, img);
-});
 
-/* Service Add New */
-
-$("#addNewBtnId").click(function(){
-
-    $("#addModal").modal("show");
-});
-/* Service Add Method */
-function ServiceAddDetails(serviceName,serviceDes,serviceImg) {
-    if (serviceName.length == 0) {
-        //Toaster Msg
-    } else if (serviceDes.length == 0) {
-        //Toaster Msg
-    } else if (serviceImg.length == 0) {
-        //Toaster Msg
-    } else {
-
-        $("#serviceAddConfirmBTN").html(
-            "<div class='spinner-border spinner-border-sm' role='status'></div>"
-        ); //Loading Animation
-
-        axios
-            .post("/serviceAdd", {
-                name: serviceName,
-                des: serviceDes,
-                img: serviceImg,
-            })
-
-            .then(function (response) {
-                $("#serviceAddConfirmBTN").html("Add");
-
-                if (response.status == 200) {
-                    if (response.data == 1) {
-                        $("#addModal").modal("hide");
-                        //Toaster Msg
-                        getServiceData();
-                    } else {
-                        $("#addModal").modal("hide");
-                        //Toaster Msg
-                        getServiceData();
-                    }
-                } else {
-                    $("#addModal").modal("hide");
-                    //Toaster Msg
-                }
-            })
-            .catch(function (error) {
-                $("#addModal").modal("hide");
-                //Toaster Msg
-            });
-    }
-}
-
-	</script>
+</script>
 @endsection
