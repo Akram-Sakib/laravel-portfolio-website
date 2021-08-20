@@ -1,7 +1,7 @@
 <div class="container section-marginTop text-center">
 
-    <h1 class="section-title">কোর্স সমূহ </h1>
-    <h1 class="section-subtitle">আইটি কোর্স, প্রজেক্ট ভিত্তিক সোর্স কোড সহ আরো যে সকল সার্ভিস আমরা প্রদান করি </h1>
+    <h1 class="section-title">Courses</h1>
+    <h1 class="section-subtitle">All the other services we provide, including IT courses, project based source code</h1>
     
     <div class="row">
 
@@ -12,7 +12,7 @@
                 <h1 class="thumbnail-title">{{$courseData->course_name}}</h1>
                 <h1 class="thumbnail-subtitle">{{$courseData->course_des}}</h1>
                 <h1 class="thumbnail-subtitle">{{$courseData->course_totalclass}}</h1>
-                <a href="{{$courseData->course_link}}" class="normal-btn btn">শুরু করুন</a>
+                <a href="{{$courseData->course_link}}" class="normal-btn btn">Get started</a>
             </div>
         </div>
     @endforeach 

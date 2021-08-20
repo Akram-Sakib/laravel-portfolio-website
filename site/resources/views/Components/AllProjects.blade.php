@@ -7,7 +7,7 @@
                     <img class="w-100" src="{{$projectData->project_img}}" alt="Card image cap">
                     <h5 class="service-card-title mt-4">{{$projectData->project_name}}</h5>
                     <h6 class="service-card-subTitle p-0 m-0">{{$projectData->project_des}}</h6>
-                    <a href="{{$projectData->project_link}}" class="normal-btn mt-2 mb-4 btn">বিস্তারিত</a>
+                    <a href="{{$projectData->project_link}}" class="normal-btn mt-2 mb-4 btn">Details</a>
                 </div>
             </div>
         </div>

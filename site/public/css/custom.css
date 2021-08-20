@@ -165,7 +165,7 @@ html,body{
 }
 
 .parallax {
-    background-image: url("../images/banner.jpg");
+    background-image: url("../images/ContactImage.png");
     min-height: 400px;
     background-attachment: fixed;
     background-position: center;
