@@ -78,3 +78,6 @@ Route::post('/onLogin', [LoginController::class, "onLogin"]);
 
 
 
+Route::get('/toast', function(){
+    return view("Toasts");
+});
